@@ -1,11 +1,13 @@
 modLoader = "javafml"
 loaderVersion = "[47,)"
 issueTrackerUrl = ""
+license = "All Rights Reserved"
 [[mods]]
 modId = "colorchat"
 version = "1.0.0"
 displayName = "ColorChat"
 logoFile = ""
 credits = ""
+license = "All Rights Reserved"
 authors = "j3ly"
 description = "Color chat mod with ranks and per-player colors"

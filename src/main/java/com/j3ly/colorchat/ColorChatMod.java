@@ -36,6 +36,9 @@ public class ColorChatMod {
 
         ChatFormatting nameColor = data.getPlayerNameColor(nameKey);
         ChatFormatting chatColor = data.getPlayerChatColor(nameKey);
+        // Match the original: chat color falls back to the name color, which itself falls back to WHITE.
+        ChatFormatting effectiveNameColor = nameColor != null ? nameColor : ChatFormatting.WHITE;
+        ChatFormatting effectiveChatColor = chatColor != null ? chatColor : effectiveNameColor;
         String groupKey = data.getPlayerGroup(nameKey);
 
         MutableComponent full = Component.literal("");
@@ -58,9 +61,9 @@ public class ColorChatMod {
             full.append(Component.literal("] ").withStyle(data.getBracketColor()));
         }
 
-        full.append(Component.literal(player.getName().getString()).withStyle(nameColor != null ? nameColor : ChatFormatting.WHITE));
+        full.append(Component.literal(player.getName().getString()).withStyle(effectiveNameColor));
         full.append(Component.literal(": ").withStyle(ChatFormatting.WHITE));
-        full.append(Component.literal(messageText).withStyle(chatColor != null ? chatColor : ChatFormatting.WHITE));
+        full.append(Component.literal(messageText).withStyle(effectiveChatColor));
 
         event.setCanceled(true);
 
